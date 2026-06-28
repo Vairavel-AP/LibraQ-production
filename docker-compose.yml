@@ -1,0 +1,77 @@
+version: '3.9'
+
+services:
+  # ─── Databases ────────────────────────────────────────
+  mongodb:
+    image: mongo:7
+    container_name: vit_mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: vit_library
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: vit_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: vit_library
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  # ─── Backend: Auth/MongoDB Service ───────────────────
+  backend-mongo:
+    build: ./backend-mongo
+    container_name: vit_auth_service
+    restart: unless-stopped
+    environment:
+      PORT: 5001
+      MONGO_URI: mongodb://mongodb:27017/vit_library
+      JWT_SECRET: vit_library_super_secret_key_2024
+      JWT_EXPIRES_IN: 7d
+      UPLOAD_DIR: uploads
+      FRONTEND_URL: http://localhost:5173
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    volumes:
+      - uploads:/app/uploads
+
+  # ─── Backend: Slots/PostgreSQL Service ───────────────
+  backend-postgres:
+    build: ./backend-postgres
+    container_name: vit_slots_service
+    restart: unless-stopped
+    environment:
+      PORT: 5002
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/vit_library
+      JWT_SECRET: vit_library_super_secret_key_2024
+      FRONTEND_URL: http://localhost:5173
+    ports:
+      - "5002:5002"
+    depends_on:
+      - postgres
+
+  # ─── Frontend: React/Vite ────────────────────────────
+  frontend:
+    build: ./frontend
+    container_name: vit_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend-mongo
+      - backend-postgres
+
+volumes:
+  mongo_data:
+  pg_data:
+  uploads:

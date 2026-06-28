@@ -1,0 +1,194 @@
+# ─────────────────────────────────────────
+#  LibraQ — MERN + PERN Monorepo .gitignore
+# ─────────────────────────────────────────
+
+# ══════════════════════════════════════════
+#  ENVIRONMENT & SECRETS  (never commit!)
+# ══════════════════════════════════════════
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+*.env
+
+# ══════════════════════════════════════════
+#  NODE / NPM
+# ══════════════════════════════════════════
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.npm/
+.yarn/
+
+# ══════════════════════════════════════════
+#  BUILD OUTPUTS
+# ══════════════════════════════════════════
+dist/
+build/
+out/
+.output/
+.vite/
+*.tsbuildinfo
+
+# ══════════════════════════════════════════
+#  UPLOADED FILES (user profile photos etc)
+# ══════════════════════════════════════════
+backend-mongo/uploads/
+uploads/
+*.jpeg
+*.jpg
+*.png
+*.gif
+*.webp
+*.pdf
+# Keep the folder structure
+!backend-mongo/uploads/.gitkeep
+!**/qr/.gitkeep
+
+# ══════════════════════════════════════════
+#  DATABASE FILES
+# ══════════════════════════════════════════
+*.db
+*.sqlite
+*.sqlite3
+database.db
+
+# ══════════════════════════════════════════
+#  LOGS
+# ══════════════════════════════════════════
+logs/
+*.log
+npm-debug.log*
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ══════════════════════════════════════════
+#  OPERATING SYSTEM
+# ══════════════════════════════════════════
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon?
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ══════════════════════════════════════════
+#  EDITOR & IDE
+# ══════════════════════════════════════════
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# JetBrains (WebStorm, IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+Session.vim
+.netrwhist
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ══════════════════════════════════════════
+#  DOCKER
+# ══════════════════════════════════════════
+# Keep docker-compose.yml but ignore overrides
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+
+# ══════════════════════════════════════════
+#  TESTING & COVERAGE
+# ══════════════════════════════════════════
+coverage/
+.nyc_output/
+*.lcov
+.jest-cache/
+test-results/
+playwright-report/
+e2e/screenshots/
+
+# ══════════════════════════════════════════
+#  CACHE & TEMP FILES
+# ══════════════════════════════════════════
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tgz
+.temp/
+tmp/
+temp/
+
+# ══════════════════════════════════════════
+#  DEPLOYMENT & CI/CD
+# ══════════════════════════════════════════
+.vercel/
+.netlify/
+.render/
+.railway/
+*.pem
+*.key
+*.cert
+*.crt
+
+# ══════════════════════════════════════════
+#  MISC
+# ══════════════════════════════════════════
+*.bak
+*.backup
+*.orig
+*.patch
+*.rej
+.husky/_

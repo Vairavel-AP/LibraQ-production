@@ -2,7 +2,7 @@
 
 A full-stack **MERN + PERN** web application for managing library bag-token slots at VIT. Students can book and release counters in real-time; admins get a live dashboard with analytics.
 
-🔗 **Live App:** [https://libraq.vercel.app](https://libraq.vercel.app)
+🔗 **Live App:** [https://libra-q-production.vercel.app](https://libra-q-production.vercel.app)
 
 ---
 
